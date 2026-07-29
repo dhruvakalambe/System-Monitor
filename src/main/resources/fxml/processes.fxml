@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.dhruva.systemmonitor.controllers.ProcessesController">
+
+    <center>
+
+        <VBox spacing="20">
+
+            <padding>
+                <Insets top="30"
+                        right="30"
+                        bottom="30"
+                        left="30"/>
+            </padding>
+
+            <Label text="Processes"
+                   styleClass="page-title"/>
+
+            <Label text="Monitor and manage running system processes."
+                   styleClass="page-subtitle"/>
+
+            <TextField fx:id="searchField"
+                       promptText="Search process..."
+                       styleClass="search-field"/>
+
+            <TableView fx:id="processTable"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+
+                    <TableColumn fx:id="pidColumn"
+                                 text="PID"
+                                 prefWidth="90"/>
+
+                    <TableColumn fx:id="nameColumn"
+                                 text="Process Name"
+                                 prefWidth="420"/>
+
+                    <TableColumn fx:id="memoryColumn"
+                                 text="Memory"
+                                 prefWidth="170"/>
+
+                    <TableColumn fx:id="cpuColumn"
+                                 text="CPU %"
+                                 prefWidth="120"/>
+
+                </columns>
+
+            </TableView>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

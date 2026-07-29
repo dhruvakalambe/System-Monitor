@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.dhruva.systemmonitor.controllers.SystemController">
+
+    <center>
+
+        <VBox spacing="20"
+              styleClass="page-container">
+
+            <padding>
+                <Insets top="30"
+                        right="30"
+                        bottom="30"
+                        left="30"/>
+            </padding>
+
+            <!-- Page Title -->
+
+            <Label text="System"
+                   styleClass="page-title"/>
+
+            <Label text="Hardware and operating system information."
+                   styleClass="page-subtitle"/>
+
+            <!-- Information Card -->
+
+            <VBox spacing="24"
+                  styleClass="card">
+
+                <!-- Card Title -->
+
+                <Label text="System Information"
+                       styleClass="section-title"/>
+
+                <GridPane hgap="40"
+                          vgap="16">
+
+                    <!-- System -->
+
+                    <Label text="Hostname"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="hostnameLabel"
+                           GridPane.columnIndex="1"
+                           styleClass="info-value"/>
+
+                    <Label text="Operating System"
+                           GridPane.rowIndex="1"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="osLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"
+                           styleClass="info-value"/>
+
+                    <Label text="Kernel"
+                           GridPane.rowIndex="2"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="kernelLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"
+                           styleClass="info-value"/>
+
+                    <Label text="Architecture"
+                           GridPane.rowIndex="3"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="architectureLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"
+                           styleClass="info-value"/>
+
+                    <Region GridPane.rowIndex="4"/>
+                    <Region GridPane.rowIndex="5"/>
+
+                    <!-- Hardware -->
+
+                    <Label text="Hardware"
+                           GridPane.rowIndex="6"
+                           styleClass="section-title"/>
+
+                    <Label text="CPU"
+                           GridPane.rowIndex="7"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="cpuLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="7"
+                           styleClass="info-value"/>
+
+                    <Label text="CPU Cores"
+                           GridPane.rowIndex="8"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="coresLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="8"
+                           styleClass="info-value"/>
+
+                    <Label text="GPU"
+                           GridPane.rowIndex="9"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="gpuLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="9"
+                           styleClass="info-value"/>
+
+                    <Label text="Memory"
+                           GridPane.rowIndex="10"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="memoryLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="10"
+                           styleClass="info-value"/>
+
+                    <Region GridPane.rowIndex="11"/>
+
+                    <!-- Runtime -->
+
+                    <Label text="Runtime"
+                           GridPane.rowIndex="12"
+                           styleClass="section-title"/>
+
+                    <Label text="Boot Time"
+                           GridPane.rowIndex="13"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="bootTimeLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="13"
+                           styleClass="info-value"/>
+
+                    <Label text="Uptime"
+                           GridPane.rowIndex="14"
+                           styleClass="info-label"/>
+
+                    <Label fx:id="uptimeLabel"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="14"
+                           styleClass="info-value"/>
+
+                </GridPane>
+
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

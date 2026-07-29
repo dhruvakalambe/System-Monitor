@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.dhruva.systemmonitor.controllers.components.ExpandableCardController"
+      spacing="0"
+      maxWidth="Infinity"
+      styleClass="performance-card">
+
+    <!-- Header -->
+    <HBox fx:id="header"
+          spacing="15"
+          alignment="CENTER_LEFT"
+          styleClass="performance-card-header">
+
+        <Label fx:id="titleLabel"
+               styleClass="performance-card-title"/>
+
+        <Pane HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="summaryLabel"
+               styleClass="performance-card-summary"/>
+
+        <Button fx:id="expandButton"
+                text="▼"
+                onAction="#toggle"
+                styleClass="expand-button"/>
+    </HBox>
+
+    <ProgressBar fx:id="progressBar"
+                 progress="0"
+                 maxWidth="Infinity"
+                 prefHeight="14"
+                 styleClass="performance-progress"/>
+
+    <!-- Hidden Content -->
+    <VBox fx:id="detailsBox"
+          visible="false"
+          managed="false"
+          spacing="8"
+          styleClass="performance-details">
+
+        <Label fx:id="line1"
+               text="Used Memory :"
+               styleClass="performance-detail"/>
+
+        <Label fx:id="line2"
+               text="Total Memory :"
+               styleClass="performance-detail"/>
+
+        <Label fx:id="line3"
+               text="Available :"
+               styleClass="performance-detail"/>
+
+        <StackPane fx:id="graphContainer"
+                   prefHeight="140"
+                   maxWidth="Infinity"
+                   styleClass="graph-container"/>
+
+    </VBox>
+
+</VBox>

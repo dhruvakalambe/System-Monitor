@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.dhruva.systemmonitor.controllers.PerformanceController">
+
+    <center>
+
+        <VBox spacing="20">
+
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="Performance"
+                   styleClass="page-title"/>
+
+            <Label text="Real-time monitoring of system resources."
+                   styleClass="page-subtitle"/>
+
+
+            <ScrollPane fx:id="scrollPane"
+                        fitToWidth="true"
+                        fitToHeight="true"
+                        hbarPolicy="NEVER"
+                        VBox.vgrow="ALWAYS"
+                        styleClass="performance-scroll">
+
+                <content>
+
+                    <VBox fx:id="cardContainer"
+                          spacing="20"
+                          fillWidth="true"/>
+
+                </content>
+
+            </ScrollPane>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
