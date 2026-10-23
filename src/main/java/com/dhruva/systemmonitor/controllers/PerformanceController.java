@@ -199,92 +199,118 @@ public class PerformanceController {
 
     }
 
-    //Disk
+
+    // Disk
     private void createDiskCard() {
-
         try {
-
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/components/ExpandableCard.fxml"));
+                    getClass().getResource(
+                            "/fxml/components/ExpandableCard.fxml"
+                    )
+            );
 
             VBox card = loader.load();
-
             card.setMaxWidth(Double.MAX_VALUE);
 
             diskCard = loader.getController();
 
             DiskInfo disk = diskService.getDiskInfo();
 
-            double totalGB = disk.getTotalSpace() / 1024.0 / 1024 / 1024;
-            double usedGB = disk.getUsedSpace() / 1024.0 / 1024 / 1024;
-            double freeGB = disk.getFreeSpace() / 1024.0 / 1024 / 1024;
+            double totalGB =
+                    disk.getTotalSpace() / 1024.0 / 1024 / 1024;
+            double usedGB =
+                    disk.getUsedSpace() / 1024.0 / 1024 / 1024;
+            double freeGB =
+                    disk.getFreeSpace() / 1024.0 / 1024 / 1024;
 
             diskCard.setTitle("Disk");
 
             diskCard.setSummary(
-                    String.format("%.1f%%", disk.getUsagePercentage())
+                    String.format(
+                            "R: %.2f | W: %.2f MB/s",
+                            disk.getReadSpeedMBps(),
+                            disk.getWriteSpeedMBps()
+                    )
             );
 
             diskCard.setLine1(
-                    String.format("Used : %.2f GB", usedGB)
+                    String.format("Read speed: %.2f MB/s",
+                            disk.getReadSpeedMBps())
             );
 
             diskCard.setLine2(
-                    String.format("Free : %.2f GB", freeGB)
+                    String.format("Write speed: %.2f MB/s",
+                            disk.getWriteSpeedMBps())
             );
 
             diskCard.setLine3(
-                    String.format("Total : %.2f GB", totalGB)
+                    String.format(
+                            "Used: %.2f GB | Free: %.2f GB | Total: %.2f GB",
+                            usedGB, freeGB, totalGB
+                    )
             );
 
-            card.setMaxWidth(Double.MAX_VALUE);
+            diskCard.setProgress(disk.getUsagePercentage());
+
             cardContainer.getChildren().add(card);
 
         } catch (IOException e) {
-
             e.printStackTrace();
-
         }
-
     }
+
     private void startDiskUpdates() {
-
         Timeline timeline = new Timeline(
-
                 new KeyFrame(Duration.seconds(1), event -> {
-
                     DiskInfo disk = diskService.getDiskInfo();
 
-                    double totalGB = disk.getTotalSpace() / 1024.0 / 1024 / 1024;
-                    double usedGB = disk.getUsedSpace() / 1024.0 / 1024 / 1024;
-                    double freeGB = disk.getFreeSpace() / 1024.0 / 1024 / 1024;
+                    double totalGB =
+                            disk.getTotalSpace() / 1024.0 / 1024 / 1024;
+                    double usedGB =
+                            disk.getUsedSpace() / 1024.0 / 1024 / 1024;
+                    double freeGB =
+                            disk.getFreeSpace() / 1024.0 / 1024 / 1024;
 
                     diskCard.updateSummary(
-                            String.format("%.1f%%", disk.getUsagePercentage())
+                            String.format(
+                                    "R: %.2f | W: %.2f MB/s",
+                                    disk.getReadSpeedMBps(),
+                                    disk.getWriteSpeedMBps()
+                            )
                     );
+
+                    // Keep the progress bar tied to storage capacity.
                     diskCard.setProgress(disk.getUsagePercentage());
-                    diskCard.addDataPoint(disk.getUsagePercentage());
+
+                    // Plot actual I/O activity, not storage capacity.
+                    diskCard.addDataPoint(
+                            disk.getReadSpeedMBps()
+                                    + disk.getWriteSpeedMBps()
+                    );
 
                     diskCard.updateLine1(
-                            String.format("Used : %.2f GB", usedGB)
+                            String.format("Read speed: %.2f MB/s",
+                                    disk.getReadSpeedMBps())
                     );
 
                     diskCard.updateLine2(
-                            String.format("Free : %.2f GB", freeGB)
+                            String.format("Write speed: %.2f MB/s",
+                                    disk.getWriteSpeedMBps())
                     );
 
                     diskCard.updateLine3(
-                            String.format("Total : %.2f GB", totalGB)
+                            String.format(
+                                    "Used: %.2f GB | Free: %.2f GB | Total: %.2f GB",
+                                    usedGB, freeGB, totalGB
+                            )
                     );
-
                 })
-
         );
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
-
     }
+
 
     //Network
     private void createNetworkCard() {

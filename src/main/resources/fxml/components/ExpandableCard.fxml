@@ -25,7 +25,7 @@
                styleClass="performance-card-summary"/>
 
         <Button fx:id="expandButton"
-                text="▼"
+                text="v"
                 onAction="#toggle"
                 styleClass="expand-button"/>
     </HBox>

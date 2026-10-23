@@ -49,7 +49,7 @@ public class ExpandableCardController {
         detailsBox.setVisible(expanded);
         detailsBox.setManaged(expanded);
 
-        expandButton.setText(expanded ? "▲" : "▼");
+        expandButton.setText(expanded ? "^" : "v");
     }
 
     public void setTitle(String title) {
